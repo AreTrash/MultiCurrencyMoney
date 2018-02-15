@@ -4,20 +4,18 @@ namespace MultiCurrencyMoney
 {
     public class Money : IExpression
     {
-        public int amount;
-
-        string currency;
-        public string Currency => currency;
+        public int Amount { get; }
+        public string Currency { get; }
 
         public Money(int amount, string currency)
         {
-            this.amount = amount;
-            this.currency = currency;
+            Amount = amount;
+            Currency = currency;
         }
         
         public Money Times(int multiplier)
         {
-            return new Money(amount * multiplier, Currency);
+            return new Money(Amount * multiplier, Currency);
         }
 
         public IExpression Plus(Money addend)
@@ -25,15 +23,16 @@ namespace MultiCurrencyMoney
             return new Sum(this, addend);
         }
 
-        public Money Reduce(string to)
+        public Money Reduce(Bank bank, string to)
         {
-            return this;
+            var rate = bank.Rate(Currency, to);
+            return new Money(Amount / rate, to);
         }
         
         public override bool Equals(object obj)
         {
             var money = (Money)obj;
-            return amount == money.amount && Currency == money.Currency;
+            return Amount == money.Amount && Currency == money.Currency;
         }
 
         public static Money Dollar(int amount)

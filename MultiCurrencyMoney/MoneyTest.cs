@@ -64,5 +64,23 @@ namespace MultiCurrencyMoney
             var res = bank.Reduce(Money.Dollar(1), "USD");
             Assert.Equal(Money.Dollar(1), res);
         }
+
+        [Fact]
+        public void ReduceMoneyDifferentCurrency()
+        {
+            var bank = new Bank();
+            bank.AddRate("CHF", "USD", 2);
+            var res = bank.Reduce(Money.Franc(2), "USD");
+            Assert.Equal(Money.Dollar(1), res);
+        }
+
+        [Fact]
+        public void Rate()
+        {
+            var bank = new Bank();
+            bank.AddRate("CHF", "USD", 2);
+            Assert.Equal(2, bank.Rate("CHF", "USD"));
+            Assert.Equal(1, bank.Rate("USD", "USD"));
+        }
     }
 }

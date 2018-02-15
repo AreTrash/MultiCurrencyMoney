@@ -11,9 +11,9 @@
             this.addend = addend;
         }
 
-        public Money Reduce(string to)
+        public Money Reduce(Bank bank, string to)
         {
-            var amount = augend.amount + addend.amount;
+            var amount = augend.Amount + addend.Amount;
             return new Money(amount, to);
         }
     }
