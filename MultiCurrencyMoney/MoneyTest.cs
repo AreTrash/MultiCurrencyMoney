@@ -30,5 +30,12 @@ namespace MultiCurrencyMoney
             Assert.Equal(Money.Franc(10), five.Times(2));
             Assert.Equal(Money.Franc(15), five.Times(3));
         }
+
+        [Fact]
+        public void Currency()
+        {
+            Assert.Equal("USD", Money.Dollar(1).Currency);
+            Assert.Equal("CHF", Money.Franc(1).Currency);
+        }
     }
 }
