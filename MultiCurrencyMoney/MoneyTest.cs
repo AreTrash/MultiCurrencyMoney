@@ -1,5 +1,4 @@
-﻿using System;
-using Xunit;
+﻿using Xunit;
 
 namespace MultiCurrencyMoney
 {
@@ -32,7 +31,9 @@ namespace MultiCurrencyMoney
         public void SimpleAddition()
         {
             var sum = Money.Dollar(3).Plus(Money.Dollar(4));
-            Assert.Equal(Money.Dollar(7), sum);
+            var bank = new Bank();
+            var reduced = bank.Reduce(sum, "USD");
+            Assert.Equal(Money.Dollar(7), reduced);
         }
     }
 }

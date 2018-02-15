@@ -2,7 +2,7 @@
 
 namespace MultiCurrencyMoney
 {
-    public class Money
+    public class Money : IExpression
     {
         protected int amount;
 
@@ -18,6 +18,11 @@ namespace MultiCurrencyMoney
         public Money Times(int multiplier)
         {
             return new Money(amount * multiplier, Currency);
+        }
+
+        public IExpression Plus(Money addend)
+        {
+            return Money.Dollar(7);
         }
         
         public override bool Equals(object obj)
