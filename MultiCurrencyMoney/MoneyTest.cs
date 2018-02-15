@@ -27,5 +27,12 @@ namespace MultiCurrencyMoney
             Assert.Equal("USD", Money.Dollar(1).Currency);
             Assert.Equal("CHF", Money.Franc(1).Currency);
         }
+
+        [Fact]
+        public void SimpleAddition()
+        {
+            var sum = Money.Dollar(3).Plus(Money.Dollar(4));
+            Assert.Equal(Money.Dollar(7), sum);
+        }
     }
 }
