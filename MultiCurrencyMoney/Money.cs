@@ -9,17 +9,17 @@ namespace MultiCurrencyMoney
         private string currency;
         public string Currency => currency;
 
-        public virtual Money Times(int multiplier)
-        {
-            return new Money(amount * multiplier, Currency);
-        }
-
         public Money(int amount, string currency)
         {
             this.amount = amount;
             this.currency = currency;
         }
-
+        
+        public Money Times(int multiplier)
+        {
+            return new Money(amount * multiplier, Currency);
+        }
+        
         public override bool Equals(object obj)
         {
             var money = (Money)obj;
@@ -34,11 +34,6 @@ namespace MultiCurrencyMoney
         public static Money Franc(int amount)
         {
             return new Money(amount, "CHF");
-        }
-
-        public override string ToString()
-        {
-            return $"{amount} {currency}";
         }
     }
 }
