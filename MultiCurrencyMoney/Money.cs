@@ -2,14 +2,17 @@
 
 namespace MultiCurrencyMoney
 {
-    public abstract class Money
+    public class Money
     {
         protected int amount;
 
-        protected string currency;
+        private string currency;
         public string Currency => currency;
 
-        public abstract Money Times(int multiplier);
+        public virtual Money Times(int multiplier)
+        {
+            return new Money(amount * multiplier, Currency);
+        }
 
         public Money(int amount, string currency)
         {
@@ -20,7 +23,7 @@ namespace MultiCurrencyMoney
         public override bool Equals(object obj)
         {
             var money = (Money)obj;
-            return amount == money.amount && GetType() == money.GetType();
+            return amount == money.amount && Currency == money.Currency;
         }
 
         public static Money Dollar(int amount)
@@ -32,6 +35,11 @@ namespace MultiCurrencyMoney
         {
             return new Franc(amount, "CHF");
         }
+
+        public override string ToString()
+        {
+            return $"{amount} {currency}";
+        }
     }
 
     public class Dollar : Money
@@ -39,22 +47,12 @@ namespace MultiCurrencyMoney
         public Dollar(int amount, string currency) : base(amount, currency)
         {
         }
-        
-        public override Money Times(int multiplier)
-        {
-            return Money.Dollar(amount * multiplier);
-        }
     }
 
     public class Franc : Money
     {
         public Franc(int amount, string currency) : base(amount, currency)
         {
-        }
-        
-        public override Money Times(int multiplier)
-        {
-            return Money.Franc(amount * multiplier);
         }
     }
 }
