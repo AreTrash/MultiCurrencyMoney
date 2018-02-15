@@ -6,7 +6,7 @@ namespace MultiCurrencyMoney
     {
         protected int amount;
 
-        private string currency;
+        string currency;
         public string Currency => currency;
 
         public Money(int amount, string currency)
