@@ -28,31 +28,17 @@ namespace MultiCurrencyMoney
 
         public static Money Dollar(int amount)
         {
-            return new Dollar(amount, "USD");
+            return new Money(amount, "USD");
         }
 
         public static Money Franc(int amount)
         {
-            return new Franc(amount, "CHF");
+            return new Money(amount, "CHF");
         }
 
         public override string ToString()
         {
             return $"{amount} {currency}";
-        }
-    }
-
-    public class Dollar : Money
-    {
-        public Dollar(int amount, string currency) : base(amount, currency)
-        {
-        }
-    }
-
-    public class Franc : Money
-    {
-        public Franc(int amount, string currency) : base(amount, currency)
-        {
         }
     }
 }
