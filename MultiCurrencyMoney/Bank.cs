@@ -2,9 +2,9 @@
 {
     public class Bank
     {
-        public Money Reduce(IExpression sorce, string to)
+        public Money Reduce(IExpression source, string to)
         {
-            return Money.Dollar(7);
+            return source.Reduce(to);
         }
     }
 }

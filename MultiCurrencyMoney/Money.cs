@@ -4,7 +4,7 @@ namespace MultiCurrencyMoney
 {
     public class Money : IExpression
     {
-        protected int amount;
+        public int amount;
 
         string currency;
         public string Currency => currency;
@@ -22,7 +22,12 @@ namespace MultiCurrencyMoney
 
         public IExpression Plus(Money addend)
         {
-            return new Money(amount + addend.amount, Currency);
+            return new Sum(this, addend);
+        }
+
+        public Money Reduce(string to)
+        {
+            return this;
         }
         
         public override bool Equals(object obj)

@@ -35,5 +35,34 @@ namespace MultiCurrencyMoney
             var reduced = bank.Reduce(sum, "USD");
             Assert.Equal(Money.Dollar(7), reduced);
         }
+
+        [Fact]
+        public void PlusReturensSum()
+        {
+            var three = Money.Dollar(3);
+            var four = Money.Dollar(4);
+            
+            var res = three.Plus(four);
+            var sum = (Sum)res;
+            Assert.Equal(three, sum.augend);
+            Assert.Equal(four, sum.addend);
+        }
+
+        [Fact]
+        public void ReduceSum()
+        {
+            var sum = new Sum(Money.Dollar(3), Money.Dollar(4));
+            var bank = new Bank();
+            var res = bank.Reduce(sum, "USD");
+            Assert.Equal(Money.Dollar(7), res);
+        }
+
+        [Fact]
+        public void ReduceMoney()
+        {
+            var bank = new Bank();
+            var res = bank.Reduce(Money.Dollar(1), "USD");
+            Assert.Equal(Money.Dollar(1), res);
+        }
     }
 }
