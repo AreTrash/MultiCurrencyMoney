@@ -16,10 +16,10 @@ namespace MultiCurrencyMoney
             this.amount = amount;
             this.currency = currency;
         }
-        
+
         public override bool Equals(object obj)
         {
-            var money = (Money) obj;
+            var money = (Money)obj;
             return amount == money.amount && GetType() == money.GetType();
         }
 
