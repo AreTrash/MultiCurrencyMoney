@@ -22,7 +22,7 @@ namespace MultiCurrencyMoney
 
         public IExpression Plus(Money addend)
         {
-            return Money.Dollar(7);
+            return new Money(amount + addend.amount, Currency);
         }
         
         public override bool Equals(object obj)

@@ -4,7 +4,7 @@
     {
         public Money Reduce(IExpression sorce, string to)
         {
-            return null;
+            return Money.Dollar(7);
         }
     }
 }
