@@ -82,5 +82,14 @@ namespace MultiCurrencyMoney
             Assert.Equal(2, bank.Rate("CHF", "USD"));
             Assert.Equal(1, bank.Rate("USD", "USD"));
         }
+
+        [Fact]
+        public void MixedAddition()
+        {
+            var bank = new Bank();
+            bank.AddRate("CHF", "USD", 2);
+            var res = bank.Reduce(Money.Dollar(5).Plus(Money.Franc(10)), "USD");
+            Assert.Equal(Money.Dollar(10), res);
+        }
     }
 }
